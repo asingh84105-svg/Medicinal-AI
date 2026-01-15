@@ -9,7 +9,8 @@ export default defineConfig(({ mode }) => {
     plugins: [react()],
     define: {
       // Mocks process.env.API_KEY so it works in the browser
-      'process.env.API_KEY': JSON.stringify(env.API_KEY),
+      // Using JSON.stringify ensures the value is embedded as a string token in the build
+      'process.env.API_KEY': JSON.stringify(env.API_KEY || ''),
       // Prevents "process is not defined" errors if other libraries access process.env
       'process.env': {},
     },
